@@ -1,0 +1,53 @@
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+student = pd.read_csv("StudentDB.csv")
+
+student
+
+student.isnull()
+
+series = pd.isnull(student["ReadingScore"])
+student[series]
+
+student.notnull()
+
+series1 = pd.notnull(student["ReadingScore"])
+student[series1]
+
+from sklearn.preprocessing import LabelEncoder
+le = LabelEncoder()
+student['Gender'] = le.fit_transform(student['Gender'])
+newstudent = student
+student
+
+missing_values = ["Na","na"]
+student = pd.read_csv("StudentDB.csv",na_values = missing_values)
+student
+
+nstudent=student
+nstudent.fillna(0)
+
+nstudent.dropna()
+
+nstudent.dropna(how='all')
+
+nstudent.dropna(axis = 1)
+
+new_student = nstudent.dropna(axis = 0, how ='any')
+new_student
+
+col = ['MathScore','ReadingScore','WritingScore','PlacementScore']
+student.boxplot(col)
+
+print(np.where(student['MathScore']>90))
+print(np.where(student['ReadingScore']<25))
+
+print(np.where((student['PlacementScore']<50) & (student['PlacementOfferCount']>1)))
+print(np.where((student['PlacementOfferCount']<3 & (student['PlacementScore']>85) )))
+
+col = ['ReadingScore']
+student.boxplot(col)
+plt.show()
