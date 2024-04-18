@@ -1,0 +1,64 @@
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+weather = pd.read_csv("weatherAUS.csv")
+
+weather.head(15)
+
+weather.tail()
+
+weather.columns
+
+print(len(weather.columns))
+
+weather.index
+
+weather.shape
+
+weather.dtypes
+
+weather.columns.values
+
+weather.describe(include='all')
+
+weather['Date']
+
+weather.sort_index(axis=1,ascending=False)
+
+weather.sort_index(axis=1,ascending=True)
+
+weather.sort_values(by='Date')
+
+weather.iloc[5]
+
+weather[10:15]
+
+weather.loc[:,["Date"]]
+
+weather.iloc[:10, :]
+
+weather.iloc[:10, :20]
+
+weather.isnull()
+
+weather.isna()
+
+weather.isnull().any()
+
+weather.isnull().sum().sum()
+
+weather.isnull().sum(axis=1)
+
+weather.isna().sum()
+
+weather.Evaporation.isnull().sum()
+
+weather.groupby(['Location'])['Cloud9am'].apply(lambda x: x.isnull().sum())
+
+weather.info()
+
+print(weather.std())
+
+print(weather.median())
