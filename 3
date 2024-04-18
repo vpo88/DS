@@ -1,0 +1,65 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+ed=pd.read_csv("Employee_Data.csv")
+
+ed.mean()
+
+ed.loc[:,'Age'].mean()
+
+ed.mean(axis=1)[0:4]
+
+ed.median()
+
+ed.loc[:,'Age'].median()
+
+ed.median(axis=1)[0:10]
+
+ed.mode()
+
+ed.loc[:,'Age'].mode()
+
+ed.min()
+
+ed.loc[:,'Age'].min(skipna = False)
+
+ed.loc[:,'Age'].min(skipna = True)
+
+ed.max()
+
+ed.std()
+
+ed.loc[:,'Age'].std()
+
+ed.std(axis=1)[0:4]
+
+ed.groupby(['Gender'])['Age'].mean()
+
+ed_u=ed.rename(columns= {'Salary':'Income'},inplace=False)
+(ed_u.groupby(['Gender']).Income.mean())
+
+from sklearn import preprocessing
+enc = preprocessing.OneHotEncoder()
+enc_ed = pd.DataFrame(enc.fit_transform(ed[['Gender']]).toarray())
+
+enc_ed
+
+ed_encode=ed_u.join(enc_ed)
+ed_encode
+
+import pandas as pd
+csv_url = 'https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data'
+col_names =['Sepal_Length','Sepal_Width','Petal_Length','Petal_Width','Species']
+iris = pd.read_csv(csv_url, names = col_names)
+iris
+
+irisSet = (iris['Species']== 'Iris-setosa')
+print('Iris-setosa')
+print(iris[irisSet].describe())
+
+irisVir = (iris['Species']== 'Iris-virginica')
+print('Iris-virginica')
+print(iris[irisVir].describe())
+
+
